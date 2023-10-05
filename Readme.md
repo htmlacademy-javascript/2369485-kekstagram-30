@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
 * Студент: [Асцатур Оганджанов](https://up.htmlacademy.ru/javascript/30/user/2369485).
-* Наставник: `Неизвестно`.
+* Наставник: [Кенан Агаев](https://htmlacademy.ru/profile/kenakula).
 
 ---
 
