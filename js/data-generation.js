@@ -5,7 +5,7 @@ import {IMAGE_COUNT, AVATAR_COUNT, MIN_LIKES, MAX_LIKES, COMMENT_COUNT,DESCRIPTI
 const createIdGenerator = () => {
   let lastGeneratedId = 0;
 
-  return function () {
+  return () => {
     lastGeneratedId += 1;
     return lastGeneratedId;
   };
