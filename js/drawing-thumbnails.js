@@ -1,11 +1,11 @@
 const photosListElement = document.querySelector('.pictures');
-const PhotoTemplate = document.querySelector('#picture').content.querySelector('.picture');
+const photoTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
 const renderPhotos = (photos) => {
   const photosListFragment = document.createDocumentFragment();
 
   photos.forEach(({url, description, likes, comments}) => {
-    const photoElement = PhotoTemplate.cloneNode(true);
+    const photoElement = photoTemplate.cloneNode(true);
 
     photoElement.querySelector('.picture__img').src = url;
     photoElement.querySelector('.picture__img').alt = description;
