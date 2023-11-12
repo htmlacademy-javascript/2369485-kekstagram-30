@@ -17,6 +17,7 @@ const renderPhotos = (photos) => {
 
 
   photosListElement.appendChild(photosListFragment);
+
 };
 
 export {renderPhotos};

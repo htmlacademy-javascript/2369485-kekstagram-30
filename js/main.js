@@ -4,6 +4,7 @@ import {openCloseBigPicture} from'./fullSize-image.js';
 import {setupHandlers} from'./fullSize-image.js';
 
 getPictures();
-renderPhotos();
-openCloseBigPicture();
-setupHandlers();
+const randomPhotoObjects = getPictures();
+renderPhotos(randomPhotoObjects);
+openCloseBigPicture(renderPhotos);
+setupHandlers(randomPhotoObjects);
