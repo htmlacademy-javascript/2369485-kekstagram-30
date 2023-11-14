@@ -1,4 +1,5 @@
 const userPicture = document.querySelector('.big-picture');
+const userPictureClose = userPicture.querySelector('.big-picture__cancel');
 
 function isEscapeKey(evt) {
   return evt.key === 'ESC' || evt.key === 'Escape';
@@ -48,9 +49,7 @@ function setupHandlers(pictures) {
   });
 }
 
-const openCloseBigPicture = () => {
-  const userPictureClose = userPicture.querySelector('.big-picture__cancel');
-
+const hiddenBigPicture = () => {
   function closeBigPicture () {
     userPicture.classList.add('hidden');
     document.addEventListener('keydown', (evt) => {
@@ -75,5 +74,5 @@ const openCloseBigPicture = () => {
 
 };
 
-export {openCloseBigPicture};
+export {hiddenBigPicture};
 export {setupHandlers};
