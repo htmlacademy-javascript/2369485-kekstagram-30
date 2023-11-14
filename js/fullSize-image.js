@@ -4,7 +4,7 @@ function isEscapeKey(evt) {
   return evt.key === 'ESC' || evt.key === 'Escape';
 }
 
-function openBigPicture ({url, description, likes, comments}) {
+const openBigPicture = function ({url, description, likes, comments}) {
 
   const body = document.querySelector('body');
   body.classList.add('modal-open');
@@ -35,7 +35,7 @@ function openBigPicture ({url, description, likes, comments}) {
     element.querySelector('.social__text').textContent = message;
     commentsContainerElement.appendChild(element);
   });
-}
+};
 
 function setupHandlers(pictures) {
   document.querySelectorAll('.picture').forEach((element) => {
