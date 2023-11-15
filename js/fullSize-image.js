@@ -65,12 +65,13 @@ const hiddenBigPicture = () => {
     closeBigPicture();
   });
 
-  document.addEventListener('keydown', (evt) => {
-
+  const closeModalEsc = (evt) => {
     if (evt.key === 'Escape') {
       closeBigPicture();
     }
-  });
+  };
+
+  document.addEventListener('keydown', closeModalEsc);
 
 };
 
