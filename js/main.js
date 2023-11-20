@@ -1,10 +1,6 @@
-import {getPictures} from './data-generation.js';
-import {renderPhotos} from'./drawing-thumbnails.js';
-import {hiddenBigPicture} from'./fullSize-image.js';
-import {setupHandlers} from'./fullSize-image.js';
+import {data} from './data.js';
+import {renderPictures} from './pictures.js';
+import './full-pictures.js';
 
-getPictures();
-const randomPhotoObjects = getPictures();
-renderPhotos(randomPhotoObjects);
-hiddenBigPicture(renderPhotos);
-setupHandlers(randomPhotoObjects);
+
+renderPictures(data);
