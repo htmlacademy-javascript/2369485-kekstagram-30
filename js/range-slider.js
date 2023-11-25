@@ -56,13 +56,13 @@ const rangesSlider = document.querySelector('.effect-level__slider');
 const rangesSliderInput = document.querySelector('.effect-level__value');
 const effectsList = document.querySelector('.effects');
 
-const smaller = document.querySelector('.scale__control--smaller');
-const bigger = document.querySelector('.scale__control--bigger');
+const zoomInControl = document.querySelector('.scale__control--smaller');
+const zoomOutControl = document.querySelector('.scale__control--bigger');
 const valueScale = document.querySelector('.scale__control--value');
 
 const image = document.querySelector('.img-upload__preview img');
 
-smaller.addEventListener('click', () => {
+zoomInControl.addEventListener('click', () => {
   const value = parseInt(valueScale.value, 10);
   if (value > 25) {
     valueScale.value = `${value - 25}%`;
@@ -70,7 +70,7 @@ smaller.addEventListener('click', () => {
   }
 });
 
-bigger.addEventListener('click', () => {
+zoomOutControl.addEventListener('click', () => {
   const value = parseInt(valueScale.value, 10);
   if (value < 100) {
     valueScale.value = `${value + 25}%`;
