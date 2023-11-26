@@ -49,6 +49,9 @@ const EFFECTS = [
   }
 ];
 const DEFAULT_EFFECT = EFFECTS[0];
+const MAX_PHOTO_SIZE = 100;
+const MIN_PHOTO_SIZE = 25;
+const STEP_SCALE = 25;
 let currentEffect = DEFAULT_EFFECT;
 
 const rangesSliderContainer = document.querySelector('.effect-level');
@@ -56,38 +59,44 @@ const rangesSlider = document.querySelector('.effect-level__slider');
 const rangesSliderInput = document.querySelector('.effect-level__value');
 const effectsList = document.querySelector('.effects');
 
-const zoomInControl = document.querySelector('.scale__control--smaller');
-const zoomOutControl = document.querySelector('.scale__control--bigger');
+const smallerInControl = document.querySelector('.scale__control--smaller');
+const biggerOutControl = document.querySelector('.scale__control--bigger');
 const valueScale = document.querySelector('.scale__control--value');
 
 const image = document.querySelector('.img-upload__preview img');
 
-zoomInControl.addEventListener('click', () => {
-  const value = parseInt(valueScale.value, 10);
-  if (value > 25) {
-    valueScale.value = `${value - 25}%`;
-    image.style.cssText += `transform: scale(${parseInt(valueScale.value, 10) / 100})`;
-  }
-});
-
-zoomOutControl.addEventListener('click', () => {
-  const value = parseInt(valueScale.value, 10);
-  if (value < 100) {
-    valueScale.value = `${value + 25}%`;
-    image.style.cssText += `transform: scale(${parseInt(valueScale.value, 10) / 100})`;
-  }
-});
-
-function showRangeSlider () {
-  rangesSliderContainer.classList.remove('hidden');
-}
-
-function hideRangeSlider () {
+export const resetDefault = () => {
   rangesSliderContainer.classList.add('hidden');
-}
+  valueScale.value = '100%';
+  image.style.cssText = 'transform: scale(1); filter: none';
+};
+
+smallerInControl.addEventListener('click', () => {
+  const value = parseInt(valueScale.value, 10);
+  if (value > MIN_PHOTO_SIZE) {
+    valueScale.value = `${value - STEP_SCALE}%`;
+    image.style.cssText += `transform: scale(${parseInt(valueScale.value, 10) / 100})`;
+  }
+});
+
+biggerOutControl.addEventListener('click', () => {
+  const value = parseInt(valueScale.value, 10);
+  if (value < MAX_PHOTO_SIZE) {
+    valueScale.value = `${value + STEP_SCALE}%`;
+    image.style.cssText += `transform: scale(${parseInt(valueScale.value, 10) / 100})`;
+  }
+});
+
+const showRangeSlider = () => {
+  rangesSliderContainer.classList.remove('hidden');
+};
+
+const hideRangeSlider = () => {
+  rangesSliderContainer.classList.add('hidden');
+};
 hideRangeSlider ();
 
-function updateSlider () {
+const updateSlider = () => {
   rangesSlider.noUiSlider.updateOptions({
     range: {
       min: currentEffect.min,
@@ -96,9 +105,9 @@ function updateSlider () {
     step: currentEffect.step,
     start: currentEffect.max
   });
-}
+};
 
-function onEffectsListClick(evt) {
+const onEffectsListClick = (evt) => {
   if (evt.target.classList.contains('effects__radio')) {
     currentEffect = EFFECTS.find((effect) =>effect.name === evt.target.value);
     image.className = `img-upload__preview effects__preview--${currentEffect.name}`;
@@ -111,9 +120,9 @@ function onEffectsListClick(evt) {
       showRangeSlider();
     }
   }
-}
+};
 
-function onRangeSliderUpdate () {
+const onRangeSliderUpdate = () => {
   const rangesSliderValue = rangesSlider.noUiSlider.get();
   rangesSliderInput.value = rangesSliderValue;
   image.style.filter = `${currentEffect.style}(${rangesSliderValue}${currentEffect.unit})`;
@@ -121,7 +130,7 @@ function onRangeSliderUpdate () {
   if (currentEffect.name === 'none') {
     image.style.filter = DEFAULT_EFFECT.style;
   }
-}
+};
 
 noUiSlider.create(rangesSlider, {
   range: {

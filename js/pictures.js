@@ -5,20 +5,21 @@ const cardTemplate = document.querySelector('#picture').content.querySelector('.
 
 const fillCardTemplate = ({id, url, description, comments, likes}) => {
   const element = cardTemplate.cloneNode(true);
+  const elementPicture = element.querySelector('.picture__img');
   element.dataset.id = id;
-  element.querySelector('.picture__img').src = url;
-  element.querySelector('.picture__img').alt = description;
+  elementPicture.src = url;
+  elementPicture.alt = description;
   element.querySelector('.picture__comments').textContent = comments.length;
   element.querySelector('.picture__likes').textContent = likes;
   return element;
 };
 
-function resetPhotos() {
+const resetPhotos = () => {
   const pictures = picturesContainer.querySelectorAll('.picture');
   pictures.forEach((picture)=> {
     picture.remove();
   });
-}
+};
 
 export const renderPictures = (data) => {
   resetPhotos();
