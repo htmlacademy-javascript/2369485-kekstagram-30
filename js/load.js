@@ -1,5 +1,5 @@
-import { getData } from './api.js';
-import { renderPictures } from './pictures.js';
+import {getData} from './api.js';
+import {renderPictures} from './pictures.js';
 import {showAlertError} from './util.js';
 
 let dataPhotos = null;
@@ -11,4 +11,4 @@ try {
   showAlertError('Данные не загружены. Попробуйте обновить страницу');
 }
 
-export { dataPhotos };
+export {dataPhotos};
