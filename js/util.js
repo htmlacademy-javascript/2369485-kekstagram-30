@@ -4,7 +4,6 @@ const isEscapeKey = (evt) => evt.key === 'Escape';
 
 const showAlertError = (message) => {
   const alertContainer = document.createElement('div');
-  alertContainer.classList.add('error-alert');
   alertContainer.textContent = message;
   document.body.append(alertContainer);
   setTimeout(() => {

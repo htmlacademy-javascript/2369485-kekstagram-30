@@ -17,7 +17,7 @@ const ErrorText = {
 
 const uploadOverlay = document.querySelector('.img-upload__overlay');
 const uploadInput = document.querySelector('.img-upload__input');
-const uploadSubmit = document.querySelector('.img-upload__submit');
+const uploadFormSubmitButton = document.querySelector('.img-upload__submit');
 const body = document.querySelector('body');
 const uploadCancel = document.querySelector('.img-upload__cancel');
 const textHashtags = uploadOverlay.querySelector('.text__hashtags');
@@ -48,12 +48,12 @@ const onUploadInputChange = () => {
   document.addEventListener('keydown', onDocumentKeydown);
 };
 
-const blockUploadSubmit = () => {
-  uploadSubmit.disabled = true;
+const blockUploadSubmitButton = () => {
+  uploadFormSubmitButton.disabled = true;
 };
 
-const unblockUploadSubmit = () => {
-  uploadSubmit.disabled = false;
+const unblockUploadSubmitButton = () => {
+  uploadFormSubmitButton.disabled = false;
 };
 
 const normalizeTags = (tagString) => tagString.trim().split(' ').filter((tag) => Boolean(tag.length));
@@ -78,13 +78,13 @@ export function onDocumentKeydown (evt) {
 const uploadFormData = async () => {
   try {
     const formData = new FormData(uploadForm);
-    blockUploadSubmit();
+    blockUploadSubmitButton();
     await sendData(formData);
-    unblockUploadSubmit();
+    unblockUploadSubmitButton();
     showBooklet('success');
     modalCloseHandler ();
   } catch {
-    unblockUploadSubmit();
+    unblockUploadSubmitButton();
     showBooklet('error');
   }
 };

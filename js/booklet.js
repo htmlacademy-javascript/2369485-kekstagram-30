@@ -29,14 +29,14 @@ const onCloseButtonClick = () => {
   closePopup();
 };
 
-export function showBooklet(cls) {
-  booklet = document.querySelector(`#${cls}`).cloneNode(true).content.querySelector(`.${cls}`);
+export function showBooklet(className) {
+  booklet = document.querySelector(`#${className}`).cloneNode(true).content.querySelector(`.${className}`);
   popupContainer.insertAdjacentElement('afterbegin', booklet);
   booklet.classList.remove('hidden');
-  const bookletCloseButton = booklet.querySelector(`.${cls}__button`);
+  const bookletCloseButton = booklet.querySelector(`.${className}__button`);
 
 
   document.addEventListener('keydown', onDocumentKeydown);
   bookletCloseButton.addEventListener('click', onCloseButtonClick);
-  booklet.addEventListener('click',(e) => checkEventTargetClassList (e, cls));
+  booklet.addEventListener('click',(e) => checkEventTargetClassList (e, className));
 }
