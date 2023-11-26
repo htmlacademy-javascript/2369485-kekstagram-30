@@ -1,8 +1,8 @@
-const DATA_FROM_SERVER = 'https://30.javascript.pages.academy/kekstagram';
+const DATA_FROM_SERVER = 'https://30.javascript.pages.academy/kekstagram/';
 
 const Route = {
-  GET_DATA: '/data',
-  SEND_DATA: '/',
+  GET_DATA: 'data',
+  SEND_DATA: '',
 };
 
 const Method = {
