@@ -1,7 +1,4 @@
-import {data} from './data.js';
-import {renderPictures} from './pictures.js';
 import './full-pictures.js';
 import './form.js';
-import './range-slider.js';
-
-renderPictures(data);
+import './load.js';
+import './booklet.js';
