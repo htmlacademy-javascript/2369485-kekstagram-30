@@ -1429,16 +1429,3 @@ main {
 .hidden {
   display: none;
 }
-
-.error-alert {
-  z-index: 101;
-  position: absolute;
-  color: black;
-  left: 0;
-  top: 0;
-  right: 0;
-  padding: 10px 3px;
-  font-size: 30px;
-  text-align: center;
-  background-color: #e82525;
-}

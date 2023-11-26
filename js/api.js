@@ -1,8 +1,8 @@
-const OFF_SITE_SERVER = 'https://30.javascript.pages.academy/kekstagram/data.';
+const DATA_FROM_SERVER = 'https://30.javascript.pages.academy/kekstagram/';
 
 const Route = {
-  GET_DATA: '/data',
-  SEND_DATA: '/',
+  GET_DATA: 'data',
+  SEND_DATA: '',
 };
 
 const Method = {
@@ -16,7 +16,7 @@ const ErrorMessage = {
 };
 
 const loadData = (route, errorText, method = Method.GET, body = null) =>
-  fetch(`${OFF_SITE_SERVER}${route}`, {method, body})
+  fetch(`${DATA_FROM_SERVER}${route}`, {method, body})
     .then((response) => {
       if (!response.ok) {
         throw new Error();

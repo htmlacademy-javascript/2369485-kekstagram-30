@@ -1,6 +1,9 @@
 import { isEscapeKey } from './util.js';
 import { dataPhotos } from './load.js';
 
+const COMMENTS_PER_PORTION = 5;
+const STEP = 1;
+
 const bigPicture = document.querySelector('.big-picture');
 const commentsLoader = bigPicture.querySelector('.comments-loader');
 const commentsCounter = bigPicture.querySelector('.social__comment-count');
@@ -8,8 +11,7 @@ const bigPictureModal = document.querySelector('.big-picture');
 const picturesContainer = document.querySelector('.pictures');
 const bigPictureClose = bigPictureModal.querySelector('.big-picture__cancel');
 
-const COMMENTS_PER_PORTION = 5;
-let loadingStep = 1;
+let loadingStep;
 
 const onDocumentKeydown = (evt) => {
   if (isEscapeKey(evt)) {
@@ -39,7 +41,7 @@ const renderCommentsCounter = (loadedComments, totalComments) => {
 };
 
 const onCommentsLoaderClick = () => {
-  loadingStep = loadingStep + 1;
+  loadingStep += STEP;
   const comments = JSON.parse(bigPicture.dataset.comments);
   const restComments = comments.slice(0, loadingStep * COMMENTS_PER_PORTION);
   renderCommentsList(restComments);
@@ -64,6 +66,18 @@ function closeBigPicture() {
   commentsLoader.removeEventListener('click', onCommentsLoaderClick);
 }
 
+function fillBigPicture({ url, likes, comments, description }) {
+  bigPicture.querySelector('.big-picture__img img').src = url;
+  bigPicture.querySelector('.likes-count').textContent = likes;
+  bigPicture.querySelector('.social__caption').textContent = description;
+  bigPicture.dataset.comments = JSON.stringify(comments);
+
+  loadingStep = 1;
+  const initialComments = comments.slice(0, COMMENTS_PER_PORTION);
+  renderCommentsList(initialComments);
+  renderCommentsCounter(initialComments.length, comments.length);
+}
+
 const onPicturesContainerClick = ({ target }) => {
   if (!target.closest('.picture')) {
     return;
@@ -79,18 +93,6 @@ function createCommentTemplate({ avatar, message, name }) {
     <img class='social__picture' src='${avatar}' alt='${name}' width='35' height='35'>
     <p class='social__text'>${message}</p>
   </li>`;
-}
-
-function fillBigPicture({ url, likes, comments, description }) {
-  bigPicture.querySelector('.big-picture__img img').src = url;
-  bigPicture.querySelector('.likes-count').textContent = likes;
-  bigPicture.querySelector('.social__caption').textContent = description;
-  bigPicture.dataset.comments = JSON.stringify(comments);
-
-  loadingStep = 1;
-  const initialComments = comments.slice(0, COMMENTS_PER_PORTION);
-  renderCommentsList(initialComments);
-  renderCommentsCounter(initialComments.length, comments.length);
 }
 
 picturesContainer.addEventListener('click', onPicturesContainerClick);
