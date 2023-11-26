@@ -1,5 +1,5 @@
 import { isEscapeKey } from './util.js';
-import { data } from './data.js';
+import { dataPhotos } from './load.js';
 
 const bigPicture = document.querySelector('.big-picture');
 const commentsLoader = bigPicture.querySelector('.comments-loader');
@@ -46,7 +46,7 @@ const onCommentsLoaderClick = () => {
   renderCommentsCounter(restComments.length, comments.length);
 };
 
-function openBigPicture() {
+function bigPictureOpen() {
   bigPictureModal.classList.remove('hidden');
   document.querySelector('body').classList.add('modal-open');
 
@@ -69,9 +69,9 @@ const onPicturesContainerClick = ({ target }) => {
     return;
   }
   const cardDataId = target.closest('.picture').dataset.id;
-  const photoData = data.find((element) => element.id === Number(cardDataId));
+  const photoData = dataPhotos.find((element) => element.id === Number(cardDataId));
   fillBigPicture(photoData);
-  openBigPicture();
+  bigPictureOpen();
 };
 
 function createCommentTemplate({ avatar, message, name }) {
